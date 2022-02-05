@@ -78,14 +78,17 @@
   ::low-zoom[zoom < 12],
   ::high-zoom[zoom >= 12] {
 
-  [feature = 'leisure_swimming_pool'][zoom >= 14] {
-    polygon-fill: @water-color;
-    [zoom >= 17] {
-      line-width: 0.5;
-      line-color: saturate(darken(@water-color, 20%), 20%);
+  [feature = 'leisure_swimming_pool'],
+  [feature = 'leisure_paddling_pool'] {
+    [zoom >= 14] {
+      polygon-fill: @water-color;
+      [zoom >= 17] {
+        line-width: 0.5;
+        line-color: saturate(darken(@water-color, 20%), 20%);
+      }
+      [way_pixels >= 4]  { polygon-gamma: 0.75; }
+      [way_pixels >= 64] { polygon-gamma: 0.3;  }
     }
-    [way_pixels >= 4]  { polygon-gamma: 0.75; }
-    [way_pixels >= 64] { polygon-gamma: 0.3;  }
   }
 
   [feature = 'leisure_recreation_ground'][zoom >= 10],
